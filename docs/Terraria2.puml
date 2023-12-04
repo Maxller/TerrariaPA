@@ -1,0 +1,17 @@
+
+/'Clases'/
+class Juego
+class Aparencia
+abstract Character
+abstract Bloque
+class Personaje
+
+/' Relaciones '/
+
+Juego "1" *-- "*" Character
+
+
+Character *-- Aparencia
+Character <|-- Personaje
+
+Bloque *-- Aparencia
