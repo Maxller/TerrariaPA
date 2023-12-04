@@ -1,0 +1,198 @@
+
+class Juego{
+    - mundo : Mundo
+    - mapa : Mapa
+    - caracterJugable : CaracterJugable
+    - animales : Animal
+    - aldeanos : Aldeano
+    - jugador : Jugador
+}
+
+class Aparencia
+class Vida
+class Mana
+class Jugador
+class Inventario
+class Mapa
+class Fondo
+
+class Hitbox
+
+class Mundo
+
+package Biomas{
+    class Selva
+    class Desierto
+    class Inframundo
+    class Mazmorra
+    class Tundra
+    class Corrupcion
+    class Carmesi
+    class Bendicion
+}
+
+package ComposicionMundo{
+    class Arbol
+    class Nube
+    class CuerposAgua
+    class Montana
+    class Cueva
+}
+abstract Character
+
+class CaracterJugable
+
+abstract Npc
+
+package Mob{
+
+    class Zombi
+    class Esqueleto
+    class Slime
+    class Jefe
+}
+
+class Aldeano
+class Dialogo
+class Animal
+class Esbirro
+
+class BloqueInteractuable
+class MesaCreacion
+class Cofre
+abstract Bloque
+class Fisica
+class BloqueSolido
+class BloqueNoSolido
+class Pared
+
+abstract Item
+package Herramienta{
+    class Pico
+    class Martillo
+    class Canhia
+}
+package Arma{
+
+    class Espada
+    class Arco
+    class Yoyo
+    class Latigo
+    class Baculo
+}
+
+package Armadura {
+    class Casco
+    class Peto
+    class Pantalones
+
+}
+class Consumible
+class Colocable
+class Material
+class ObjetoCuyoNombreNoRecuerdo
+/'Mismo caso que con el mineral la pocion no tiene mucha diferencia con los otros consumibles
+lo unico que cambia son sus caracteristicas'/
+'class Pocion
+
+
+class Dinero
+
+/'No estoy seguro de que Drop sea un clase (Tecnicamente es un verbo en ingles),
+sin enbargo Drop si tiene caracteristicas como si de una clase se tratara.
+Asi que si lo pondre'/
+
+class Drop
+
+/'No estoy seguro pero creo que cada objeto del juego es un objeto diferente
+No se me ocurrio la manera de englobarlos todos en un solo concepto, es lo mas
+asbtracto que puedo ver el juego, pero aun faltan muchas cosas por explicar'/
+
+
+/' Relaciones '/
+
+Juego "1" *-- "*" Character
+Juego "1" *-- "1" Mundo
+Juego "1" *-- "1" Inventario
+Juego "1" *-- "0,1" Mapa
+Juego "1" *-- "1..*" Jugador
+
+Jugador o-- CaracterJugable
+Jugador  o-- Inventario
+
+Drop <|-- Item
+
+
+Mundo "1" *-- "*" Biomas
+
+Biomas "1" *-- "*" ComposicionMundo
+Biomas "1" *-- "1" Fondo
+
+ComposicionMundo *-- "*" Bloque
+
+Bloque  *-- "1" Aparencia
+Bloque *-- "1" Item
+Bloque *-- "1..*" Drop
+Bloque *-- "1" Fisica
+Bloque <|-- BloqueNoSolido
+Bloque <|-- BloqueSolido
+Bloque <|-- BloqueInteractuable
+
+' BloqueSolido <|-- Mineral
+
+BloqueNoSolido <|-- Pared
+
+BloqueInteractuable <|-- Cofre
+BloqueInteractuable <|-- MesaCreacion
+BloqueInteractuable *-- Inventario
+
+Inventario *-- Item
+
+Character *-- Aparencia
+Character *-- Vida
+Character <|-- CaracterJugable
+Character <|-- Npc
+Character *-- Drop
+Character *-- Hitbox
+Character o-- Item
+
+CaracterJugable *-- Mana
+CaracterJugable o-- Npc
+CaracterJugable o-- Bloque
+
+
+
+Item *-- Aparencia
+Item <|-- Herramienta
+Item <|-- Armadura
+Item <|-- ObjetoCuyoNombreNoRecuerdo
+Item <|-- Arma
+Item <|-- Consumible
+Item <|-- Material
+
+Npc <|-- Mob
+Npc <|-- Aldeano
+Npc <|-- Animal
+Npc <|-- Esbirro
+
+Aldeano *-- Item
+Aldeano *-- Dialogo
+Aldeano *-- Inventario
+
+/'Ayuda :c'/
+
+Colocable --|> Item
+Colocable --|> Bloque
+
+Dinero --|> Item
+
+'Pocion --|> Consumible
+
+/'Tengo demasiadas dudas, Definitivamente el diseño no es lo mio'/
+
+/'Al final es un revolvero, Espero con ansias la retroalimetacion,
+hay aun mchas cosas que no me quedan claro en cuanto al diseño
+ahora entiendo el porque tardan mas diseñando un juego que codificandolo
+PD. El orden cronologico de los cometarios no es como van apareciendo
+
+'/
