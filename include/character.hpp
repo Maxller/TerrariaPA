@@ -12,7 +12,7 @@ protected:
 public:
     Character(/* args */){}
     
-    virtual void caminar(int frame) = 0;
+    virtual void caminar(int frame, SDL_RendererFlip direccion) = 0;
     virtual void saltar() = 0;
     virtual void caer() = 0;
     virtual void accionActiva() = 0;
